@@ -1,6 +1,6 @@
 ; ----------------------------------------------------------------------------------------
 ; Writes "Hello, World" to the console using only system calls.
-; Runs on 64-bit Linux only.
+; Runs on Linux only.
 ;
 ; Complements of https://cs.lmu.edu/~ray/notes/nasmtutorial/
 ;
@@ -27,6 +27,16 @@
 %define hewo _start   ; An exception to all-caps preprocessor macros so we can see what to extern
 %else
 %define hewo hewo
+%endif
+%if __BITS__ == 32
+    %define rax eax
+    %define rbx ebx
+    %define rcx ecx
+    %define rdx edx
+    %define rsi esi
+    %define rdi edi
+    %define rbp ebp
+    %define rsp esp
 %endif
 
 global    hewo
